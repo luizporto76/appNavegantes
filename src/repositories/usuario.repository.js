@@ -16,8 +16,16 @@ const encontrarPorId = async function(id){
     return usuario;
 }
 
+const encontrarUmPorWhere = async function(where){
+    const usuario = await Usuario.findOne({
+        where: where
+    });
+    return usuario;
+}
+
 module.exports = {
     criar: criar,
     encontrarTodos: encontrarTodos,
     encontrarPorId: encontrarPorId,
+    encontrarUmPorWhere: encontrarUmPorWhere,
 }
