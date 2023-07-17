@@ -1,7 +1,7 @@
-create = async function(req, res) {
+const criar = async function(req, res) {
     res.send({message: 'rota esta uncionando'});
 }
 
 module.exports = {
-    create: create 
+    criar: criar 
 }
