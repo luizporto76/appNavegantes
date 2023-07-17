@@ -69,9 +69,27 @@ const encontrarPorId = async function(req, res, next){
     }
 }
 
+const deletar = async function(req, res, next){
+    try {
+        const errors = validationResult(req);
+
+        if(!errors.isEmpty()){
+            throw createError(422, {errors: errors.array()})
+        }
+        const response = await usuarioSevice.deletar(req.params.id);
+        if (response && response.message){
+            throw response;
+        }
+        res.send(response);
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     criar: criar,
     encontrarTodos: encontrarTodos,
     encontrarPorId: encontrarPorId,
     atualizar: atualizar,
+    deletar: deletar,
 }

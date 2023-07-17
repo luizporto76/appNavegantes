@@ -27,11 +27,16 @@ const encontrarUmPorWhere = async function(where){
     return usuario;
 }
 
+const deletar = async function (id){
+    return await Usuario.destroy({ where:{ id: id }});
+}
+
 module.exports = {
     criar: criar,
     atualizar: atualizar,
     encontrarTodos: encontrarTodos,
     encontrarPorId: encontrarPorId,
     encontrarUmPorWhere: encontrarUmPorWhere,
+    deletar: deletar,
     
 }
