@@ -8,7 +8,14 @@ const criar = function(){
     body('Telefone', validatorMessage('Telefone')).exists().bail().isString(),
     body('Senha', validatorMessage('Senha')).exists().bail().isString(),
     ]
+}
 
+const atualizar = function(){
+    return[
+    body('NomeUsuario', validatorMessage('Nome')).exists().bail().isString(),
+    body('Telefone', validatorMessage('Telefone')).exists().bail().isString(),
+    param('id', validatorMessage('Id')).exists().bail().isInt(),
+    ]
 }
 
 const encontrarPorId = function(){
@@ -20,4 +27,5 @@ const encontrarPorId = function(){
 module.exports = {
     criar: criar,
     encontrarPorId: encontrarPorId,
+    atualizar: atualizar,
 };
