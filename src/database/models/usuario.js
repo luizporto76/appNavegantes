@@ -10,19 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-
+      // define association here
     }
   }
   Usuario.init({
     NomeUsuario: DataTypes.STRING,
     Clube: DataTypes.STRING,
     Telefone: DataTypes.STRING,
-    Senha: DataTypes.STRING
-  }, {
+    Senha: DataTypes.STRING,
+}, {
     sequelize,
     modelName: 'Usuario',
     tableName: 'usuarios',
-    paranoid: true
+    paranoid: true,
   });
   return Usuario;
 };
