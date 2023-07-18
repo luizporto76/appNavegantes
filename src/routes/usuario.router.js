@@ -2,16 +2,19 @@ const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuario.controller');
 const usuarioValidator = require('../validators/usuario.validator');
+const verifyJWT = require('../middlewares/authorizator');
 
 
 router.post('/', usuarioValidator.criar(),  usuarioController.criar);
 
-router.get('/', usuarioController.encontrarTodos);
+router.post('/login', usuarioValidator.login(),  usuarioController.login);
 
-router.get('/:id', usuarioValidator.encontrarPorId(), usuarioController.encontrarPorId);
+router.get('/', verifyJWT, usuarioController.encontrarTodos);
 
-router.put('/:id', usuarioValidator.atualizar(),  usuarioController.atualizar);
+router.get('/:id', verifyJWT, usuarioValidator.encontrarPorId(), usuarioController.encontrarPorId);
 
-router.delete('/:id', usuarioValidator.deletar(), usuarioController.deletar);
+router.put('/:id', verifyJWT, usuarioValidator.atualizar(),  usuarioController.atualizar);
+
+router.delete('/:id', verifyJWT, usuarioValidator.deletar(), usuarioController.deletar);
 
 module.exports = router;  

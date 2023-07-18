@@ -21,6 +21,24 @@ const criar = async function(req, res, next) {
     }
 }
 
+const login = async function(req, res, next){
+    try {
+        const errors = validationResult(req);
+
+        if(!errors.isEmpty()){
+            throw createError(422, {errors: errors.array()})
+        }
+        const response = await usuarioSevice.login(req.body);
+
+        if(response && response.message){
+            throw response;
+        }
+        res.send(response);
+    } catch (error) {
+        return next(error);
+    }
+}
+
 const atualizar = async function(req, res, next){
     try {
         const errors = validationResult(req);
@@ -92,4 +110,5 @@ module.exports = {
     encontrarPorId: encontrarPorId,
     atualizar: atualizar,
     deletar: deletar,
+    login: login,
 }
