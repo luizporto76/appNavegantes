@@ -3,7 +3,7 @@ function montarErro(error){
         return error.errors.map(err => err.msg);
     }
     if (error.message){
-        return[ error.message ];
+        return[error.message];
     }
 
     return['Algum erro aconteceu, tente novamente mais tarde.']
