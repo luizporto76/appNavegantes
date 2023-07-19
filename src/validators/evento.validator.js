@@ -5,7 +5,6 @@ const { validatorMessage } = require('../utils/errorMessage');
 const criar = function(){
     return[
     body('titulo', validatorMessage('titulo')).exists().bail().isString(),
-
     ]
 }
 

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const eventoController = require('../controllers/evento.controller');
-const verifyJWT = require('../middlewares/authorizator');
 const eventoValidator = require('../validators/evento.validator');
+const verifyJWT = require('../middlewares/authorizator');
 
 router.post('/', verifyJWT, eventoValidator.criar(), eventoController.criar);
 

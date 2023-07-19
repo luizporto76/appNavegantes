@@ -1,28 +1,26 @@
 const eventoRepository = require('../repositories/envento.repository');
 const createError = require('http-errors');
-require('dotenv').config();
+
 
 
 const criar = async function(evento){
-
-    const existeEvento = await enventoRepository.encontrarUmPorWhere({ titulo: evento.titulo });
+    const existeEvento = await eventoRepository.encontrarUmPorWhere({titulo: evento.titulo});
 
     if(existeEvento){
-        return createError(409, 'Evento já cadastrado');
+        return createError(409, 'Evento já existe');
+    }
+    const eventoCriado = await eventoRepository.criar(evento);
+        return eventoCriado;
     }
 
-    const eventoCriado = await eventoRepository.criar(evento);
-    return eventoCriado;
-}
-
 const atualizar = async function(evento, id){
-    const existeEvento = await enventoRepository.encontrarPorId(id);
+    const existeEvento = await eventoRepository.encontrarPorId(id);
 
     if (!existeEvento) {
         return createError(404, 'Evento não cadastrado');
     }
-
     await eventoRepository.atualizar(evento, id); 
+    
     return await eventoRepository.encontrarPorId(id);
 }
 

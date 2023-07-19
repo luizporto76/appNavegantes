@@ -35,11 +35,7 @@ const atualizar = async function(req, res, next){
         }
         const response = await eventoService.atualizar({
             titulo: req.body.titulo,
-            dataInicial: req.body.dataInicial,
-            dataFinal: req.body.dataFinal,
-            end: req.body.end,
-            estado: req.body.estado,
-            cidade: req.body.cidade,
+
         },req.params.id);
         
         if(response && response.message){
