@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     dataFinal: DataTypes.DATE,
     end: DataTypes.STRING,
     estado: DataTypes.STRING,
-    cidade: DataTypes.STRING
+    cidade: DataTypes.STRING,
+    fly: DataTypes.STRING,
+    descricao: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Evento',
