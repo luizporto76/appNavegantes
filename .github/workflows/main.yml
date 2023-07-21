@@ -1,19 +1,23 @@
 
-on: push
-name: Deploy website on push
+name: FTP Test
+
+on:
+  push:
+    branches: [main]
+
 jobs:
-  web-deploy:
-    name: Deploy
+  deploy:
+    name: 🚀 Deploy website every commit
     runs-on: ubuntu-latest
     steps:
-    - name: Get latest code
-      uses: actions/checkout@v3
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
 
-    - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: 191.96.251.178
-        username: root
-        password: C@iu2019#2023
-        protocol: ftps
-        port: 22 # todo replace with your web hosts ftps port
+      - name: 📂 Sync files
+        uses: ./apiNavegantesDE
+        with:
+          server: 191.96.251.178
+          username: root
+          password: C@iu2019#2023
+          protocol: ftps
+          port: 22 # todo replace with your web hosts ftps port
