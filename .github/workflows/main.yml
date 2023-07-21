@@ -13,7 +13,7 @@ jobs:
       with:
         server: 191.96.251.178
         username: 'root'
-        password: C@iu2019#2023
+        password: 'C@iu2019#2023'
         protocol: ftp
         port: 22 
         server-dir: apiNavegantesDE/
