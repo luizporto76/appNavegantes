@@ -1,29 +1,33 @@
-name: Node CI
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
-on: [push]
+name: Node.js Package
+
+on:
+  release:
+    types: [created]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
-    - name: Install npm dependencies
-      run: npm install
-    - name: Run build task
-      run: npm run build --if-present
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm test
 
-    - name: Deploy to Server
-      uses: easingthemes/ssh-depoly@main
-      env:
-          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm publish
+        env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          REMOTE_HOST: ${ {secrets.REMOTE_HOST} }
-          REMOTE_USER: ${ {secrets.REMOTE_USER}}
-          REMOTE_PORT: ${ {secrets.REMOTE_PORT}}
-          TARGET: ${ {secrets.TARGET} }
