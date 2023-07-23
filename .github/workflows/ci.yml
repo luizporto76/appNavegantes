@@ -19,7 +19,7 @@ jobs:
       run: npm run build --if-present
 
     - name: Deploy to Server
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      uses: easingthemes/ssh-deply@main
       env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
           REMOTE_HOST: ${ {secrets.REMOTE_HOST} }
