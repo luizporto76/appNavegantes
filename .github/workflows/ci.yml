@@ -1,21 +1,18 @@
-name: Navegantes.com CI
-on:
-  push:
-    branches:
-      - main
-
-jobs: 
+on: push
+name: 🚀 Deploy website on push
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout do repositorio
-        use: actions/checkout@3
-      - name: Deploy para meu hosting 
-        use: easingthemes/ssh-deploy@main
-          env: 
-            SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-            ARGS: "-rltgoDzvO --delete"
-            SOURCE: "src/"
-            REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-            REMOTE_USER: ${{ secrets.REMOTE_USER }}
-            REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-            TARGET: ${{ secrets.REMOTE_HOST }}
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftps
+        port: 22 # todo replace with your web hosts ftps port
