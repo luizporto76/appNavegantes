@@ -28,4 +28,9 @@ jobs:
       - run: npm ci
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${ {secrets.NODE_AUTH_TOKEN} }
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          REMOTE_HOST: ${ {secrets.REMOTE_HOST} }
+          REMOTE_USER: ${ {secrets.REMOTE_USER}}
+          REMOTE_PORT: ${ {secrets.REMOTE_PORT}}
+          TARGET: ${ {secrets.TARGET} }
