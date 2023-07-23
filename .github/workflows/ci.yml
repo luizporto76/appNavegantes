@@ -28,4 +28,18 @@ jobs:
         REMOTE_USER: ${{secrets.REMOTE_USER}}
         REMOTE_PORT: ${{secrets.REMOTE_PORT}}
         TARGET: ${{secrets.TARGET}}
- 
+        pipeline:
+    ssh:
+      image: appleboy/drone-ssh
+      settings:
+      host: 
+      from_secret: ssh_host
+      username: 
+      from_secret: ssh_username
+      key:
+      from_secret: ssh_key
+      port:
+      from_secret: ssh_port
+      script:
+        - echo "hello"
+        - echo "world"
