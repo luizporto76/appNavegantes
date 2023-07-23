@@ -27,7 +27,7 @@ jobs:
     - name: Run build task
       run: npm run build --if-present
     - name: Deploy to Server
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@main
       env:
         SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
         
