@@ -19,7 +19,7 @@ jobs:
       run: npm run build --if-present
 
     - name: Deploy to Server
-      uses: easingthemes/ssh-deply@main
+      uses: easingthemes/ssh-deploy@main
       env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
